@@ -1,21 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import Question from './Question';
+import Results from './Results';
 
 // Takes in an array of questions and displays the Question Component
 
 const Quiz = ({ questions }) => {
     const [score, setScore] = useState(0);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [complete, setComplete] = useState(false);
 
-    useEffect(() => {
-        console.log(questions);
-    }, []);
+    useEffect(() => console.log(questions[currentQuestion]), []);
+
+    const handleClick = (isTrue) => {
+        if (isTrue) setScore(score + 1);
+        let nextQuestion = currentQuestion + 1;
+
+        if (nextQuestion < questions.length) {
+            setCurrentQuestion(nextQuestion);
+        } else {
+            setComplete(true);
+        }
+    };
 
     return (
         <div>
-            <h1>Hello World</h1>
-            {questions.map((question) => {
-                return <Question key={question.id} question={question} />;
-            })}
+            {complete ? (
+                <Results score={score} />
+            ) : (
+                <div>
+                    <h1>{questions[currentQuestion].text}</h1>
+                    <div className='question-options'>
+                        {questions[currentQuestion].answers.map((answer) => (
+                            <button
+                                onClick={() => handleClick(answer.is_true)}
+                                key={answer.id}
+                            >
+                                {answer.text}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

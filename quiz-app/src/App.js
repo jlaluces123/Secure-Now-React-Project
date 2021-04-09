@@ -23,9 +23,6 @@ function App() {
                     score={quizData.score}
                 />
             </Route>
-            <Route path='/results'>
-                <Results />
-            </Route>
         </Switch>
     );
 }
