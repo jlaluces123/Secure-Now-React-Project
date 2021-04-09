@@ -29,7 +29,11 @@ const Quiz = ({ questions }) => {
     return (
         <div>
             {complete ? (
-                <Results score={score} incorrect={incorrect} />
+                <Results
+                    score={score}
+                    questions={questions}
+                    incorrect={incorrect}
+                />
             ) : (
                 <div>
                     <h1>{questions[currentQuestion].text}</h1>
