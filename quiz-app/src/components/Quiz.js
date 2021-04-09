@@ -7,11 +7,16 @@ const Quiz = ({ questions }) => {
     const [score, setScore] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [complete, setComplete] = useState(false);
+    const [incorrect, setIncorrect] = useState([]);
 
     useEffect(() => console.log(questions[currentQuestion]), []);
 
-    const handleClick = (isTrue) => {
-        if (isTrue) setScore(score + 1);
+    const handleClick = (isTrue, questionNum) => {
+        if (isTrue) {
+            setScore(score + 1);
+        } else {
+            setIncorrect([...incorrect, questionNum]);
+        }
         let nextQuestion = currentQuestion + 1;
 
         if (nextQuestion < questions.length) {
@@ -24,14 +29,16 @@ const Quiz = ({ questions }) => {
     return (
         <div>
             {complete ? (
-                <Results score={score} />
+                <Results score={score} incorrect={incorrect} />
             ) : (
                 <div>
                     <h1>{questions[currentQuestion].text}</h1>
                     <div className='question-options'>
                         {questions[currentQuestion].answers.map((answer) => (
                             <button
-                                onClick={() => handleClick(answer.is_true)}
+                                onClick={() =>
+                                    handleClick(answer.is_true, currentQuestion)
+                                }
                                 key={answer.id}
                             >
                                 {answer.text}
