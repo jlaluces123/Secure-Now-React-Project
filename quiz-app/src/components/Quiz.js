@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Results from './Results';
 import { Link } from 'react-router-dom';
 // Takes in an array of questions and displays the Question Component
@@ -9,8 +9,6 @@ const Quiz = ({ questions }) => {
     const [complete, setComplete] = useState(false);
     const [incorrect, setIncorrect] = useState([]);
 
-    useEffect(() => console.log(questions[currentQuestion]), []);
-
     const handleClick = (isTrue, questionNum) => {
         if (isTrue) {
             setScore(score + 1);
@@ -19,6 +17,7 @@ const Quiz = ({ questions }) => {
         }
         let nextQuestion = currentQuestion + 1;
 
+        // Stop the quiz if there are no questions left
         if (nextQuestion < questions.length) {
             setCurrentQuestion(nextQuestion);
         } else {

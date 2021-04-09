@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
 const Results = ({ score, questions, incorrect }) => {
     return (
@@ -11,19 +10,15 @@ const Results = ({ score, questions, incorrect }) => {
             <h4>Question Recap:</h4>
             <ul>
                 {questions.map((questionNum, index) => {
-                    {
-                        return incorrect.includes(index) ? (
-                            <li key={index}>
-                                Question {index + 1}:{' '}
-                                {questionNum.feedback_false}
-                            </li>
-                        ) : (
-                            <li key={index}>
-                                Question {index + 1}:{' '}
-                                {questionNum.feedback_true}
-                            </li>
-                        );
-                    }
+                    return incorrect.includes(index) ? (
+                        <li key={index}>
+                            Question {index + 1}: {questionNum.feedback_false}
+                        </li>
+                    ) : (
+                        <li key={index}>
+                            Question {index + 1}: {questionNum.feedback_true}
+                        </li>
+                    );
                 })}
             </ul>
             <a href='/quiz'>Want to Retake?</a>

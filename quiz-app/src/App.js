@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
-
 import quizData from './data/data.json';
 import { Switch, Route } from 'react-router-dom';
+
+// Components
 import Home from './components/Home';
 import Quiz from './components/Quiz';
-import Results from './components/Results';
 
 function App() {
-    useEffect(() => {
-        console.log(quizData);
-    }, []);
-
     return (
         <Switch>
             <Route exact path='/'>
