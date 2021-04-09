@@ -15,7 +15,10 @@ function App() {
     return (
         <Switch>
             <Route exact path='/'>
-                <Home title={quizData.title} />
+                <Home
+                    title={quizData.title}
+                    description={quizData.description}
+                />
             </Route>
             <Route path='/quiz'>
                 <Quiz

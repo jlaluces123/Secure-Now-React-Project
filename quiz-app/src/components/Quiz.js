@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Results from './Results';
-
+import { Link } from 'react-router-dom';
 // Takes in an array of questions and displays the Question Component
 
 const Quiz = ({ questions }) => {
@@ -36,6 +36,7 @@ const Quiz = ({ questions }) => {
                 />
             ) : (
                 <div>
+                    <Link to='/'>Home</Link>
                     <h1>{questions[currentQuestion].text}</h1>
                     <div className='question-options'>
                         {questions[currentQuestion].answers.map((answer) => (
